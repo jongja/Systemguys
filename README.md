@@ -10,5 +10,5 @@ This repository was created for system guys. We study technical papers every two
 
 ## Members
 
-[Jongja](https://github.com/jongja)
-Jaehyuk
+[Jongja](https://github.com/jongja)  
+[Jaehyuk](https://github.com/Choi-Jaehyeok)
