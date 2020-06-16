@@ -4,5 +4,5 @@ This repository was created for system guys. We study technical papers every two
 
 # Members
 
-Jongja
+[Jongja](https://github.com/jongja)
 Jaehuck
