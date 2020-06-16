@@ -4,11 +4,11 @@ This repository was created for system guys. We study technical papers every two
 
 ## Directories
 
-**DS** : Data Structures
-**Papers** : Technical Paper and Reviews
-**Projects** : Projects of Systemguys
+**DS**  : Data Structures  
+**Papers**  : Technical Paper and Reviews  
+**Projects**  : Projects of Systemguys  
 
 ## Members
 
 [Jongja](https://github.com/jongja)
-Jaehuck
+Jaehyuk
