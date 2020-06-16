@@ -7,8 +7,8 @@ class Vector {   // start with capital letter
   
 ---
   
-public:
-   // skip constructor & destructor
-   void vector_push_back(int data); // [data structure]_[functional name] ->  following snake rule.
-   ...
-};
+public:  
+   // skip constructor & destructor  
+   void vector_push_back(int data); // [data structure]_[functional name] ->  following snake rule.  
+   ...  
+};  
