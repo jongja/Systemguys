@@ -2,7 +2,13 @@
 
 This repository was created for system guys. We study technical papers every two weeks. We also develop some data structures for various projects.
 
-# Members
+## Directories
+
+**DS** : Data Structures
+**Papers** : Technical Paper and Reviews
+**Projects** : Projects of Systemguys
+
+## Members
 
 [Jongja](https://github.com/jongja)
 Jaehuck
