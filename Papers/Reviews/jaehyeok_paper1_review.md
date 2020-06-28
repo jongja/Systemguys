@@ -10,7 +10,6 @@ Alphago는 바둑이라는 제한된 환경 하에 있는 인공지능이다. �
 나는 Alphago에게 주어진 환경과, 그 환경을 어떻게 활용했는지에 대해 고찰했다.
 
 ## Conclusion
-### 1. 알파고에게 주어진 환경의 특징
 Alphago에 주어진 환경은 361칸의 바둑판이다. Extended data table 2를 보면, Neural networks에 input으로 들어가는 변수들을 볼 수 있다. 이를 요약하면 다음과 같다.
 ###
     1. 게임판 칸의 기본 정보(흰색 or 검은색 or 빈 칸)
@@ -20,12 +19,9 @@ Alphago에 주어진 환경은 361칸의 바둑판이다. Extended data table 2�
     5. 착수 정보
 이 중, 4번 5번 정보는 바둑의 규칙이라는 환경에 초점을 둔 정보다.
 
-해당 input을 보고, 가장 먼저 유추할 수 있는 부분은 Alphago의 학습환경이 이산적으로 표현이 가능하다는 것이다. 
+해당 input을 보고, 가장 먼저 유추할 수 있는 부분은 Alphago의 학습환경이 이산적으로 표현이 가능하다는 것이다. 따라서 Alphago는 특정 timestep과, field 정보를 하나의 state로 규정하는 것이 가능했다. 각각의 state는 전후관계가 있었고, 이를 timestep = depth인 tree형태로 나타낼 수 있었다. 즉, solution의 탐색을 tree search와 동치였으며, Alphago는 Monte-Carlo tree search, MCTS를 통해 탐색이 가능한 것이다. 
 
-
-### 2. 알파고의 
-
-
+그 다음으로, 바둑이라는 게임 환경에서 플레이어는 모든 정보를 알 수 있다는 것이다. 환경인지에서 확률을 배제할 수 있는 특징으로 인해, Alphago의 state tree는 확률요소를 포함하지 않았고, input image의 size를 압축할 수 있었다.
 
 
 
