@@ -8,7 +8,7 @@ class FastAlloc
 {
 private:
 	T _arr[__FAST_ALLOC_MAX_SIZE__];
-	T* _stack[__FAST_ALLOC_MAX_SIZE__]; // policy: the most frequent use, faster cache mem approach
+	T* _stack[__FAST_ALLOC_MAX_SIZE__]; // policy: the most recently used, faster cache mem approach
 	int _top, _alloc_idx;
 
 	FastAlloc<T>();
