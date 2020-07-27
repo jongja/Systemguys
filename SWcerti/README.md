@@ -18,5 +18,8 @@ Using our codes..
 [Quick Sort](https://github.com/jongja/Systemguys/blob/develop/DS/qsort/qsort.cpp)  
 [Merge Sort](https://github.com/jongja/Systemguys/blob/develop/DS/msort/msort.cpp)  
 
+## 5. KMP
+
+## 6. Heap
 
 ## continue..  

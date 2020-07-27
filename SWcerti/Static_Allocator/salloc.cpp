@@ -41,6 +41,8 @@ int main(void) {
     newNode->b = 40;
     newNode->next = NULL;
 
+    //int* newNode = salloc<int>();
+
     hello->next = newNode; // Connected
     return 0;
 }
