@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-#define ALLOCATOR_POOL_SIZE 2000000
+#define MAX_ALLOC_POOL_SIZE 2000000
 
 typedef struct AllocStruct // For testing..
 {
@@ -20,7 +20,7 @@ typedef struct AllocStruct // For testing..
 
 // STATIC ALLOCATOR //
 template <typename T>
-T allocator_pool_array[ALLOCATOR_POOL_SIZE] = { 0 };
+T allocator_pool_array[MAX_ALLOC_POOL_SIZE] = { 0 };
 int allocator_pool_idx = 0;
 
 template <typename T>
