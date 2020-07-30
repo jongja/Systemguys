@@ -69,7 +69,7 @@ void insert_list(int val) {
     }
 }
 
-void test_list() {
+void test_list() { // 
     node* walker = head;
     int total = 0;
     while (walker) {
