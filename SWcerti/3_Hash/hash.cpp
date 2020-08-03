@@ -10,6 +10,7 @@ using namespace std;
 
 #define HASH_SIZE 10000
 #define PRIME_NUM 23
+#define	PRIME_NUM2 29
 
 int hasing(char* str) { // hasing function for string
 	long long key = 0, p = 1;
@@ -21,7 +22,7 @@ int hasing(char* str) { // hasing function for string
 }
 
 int hasing(int val) { // hasing function for integer value (NOT IMPLEMENTED)
-	return (val * PRIME_NUM) % HASH_SIZE;
+	return ((val % PRIME_NUM) * (val % PRIME_NUM2)) % HASH_SIZE;
 }
 
 int main(void) {

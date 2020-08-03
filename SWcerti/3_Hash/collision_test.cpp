@@ -4,7 +4,7 @@
  * TIME COMPLEXITY : O(1)
  * datas_size : input data
  */
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -212,8 +212,9 @@ char datas[200][200] = {
 "Zoe"
 };
 
-#define HASH_SIZE 100000
+#define HASH_SIZE 2000000
 #define PRIME_NUM 23
+#define PRIME_NUM2 29
 #define MAX_STR_SIZE 100
 #define MAX_ALLOCATE_POOL_SIZE 2000000
 
@@ -234,8 +235,8 @@ hnode* salloc() {
 	return &allocate_pool_array[allocate_pool_idx++];
 }
 
-int hasing(char* str) { // hasing function for string
-	long long key = 0, p = 1;
+unsigned long long hasing(char* str) { // hasing function for string
+	unsigned long long key = 0, p = 1;
 	for (int i = 0; str[i]; i++) {
 		key += str[i] * p;
 		p *= PRIME_NUM;
@@ -244,11 +245,14 @@ int hasing(char* str) { // hasing function for string
 }
 
 int hasing(int val) { // hasing function for integer value (NOT IMPLEMENTED)
-	return (val * PRIME_NUM) % HASH_SIZE;
+	int a = val * PRIME_NUM;
+	int b = val % PRIME_NUM2;
+	return ((val % PRIME_NUM) * (val % PRIME_NUM2)) % HASH_SIZE;
 }
 
 void insert_hash_table(hnode* newNode) {
 	int idx = hasing(newNode->str);
+	//int idx = newNode->val % HASH_SIZE; 
 	if (hash_table[idx] == NULL) {
 		hash_table[idx] = newNode;
 		return;
@@ -261,24 +265,28 @@ void insert_hash_table(hnode* newNode) {
 	}
 }
 
-int main(void) {	
+int main(void) {
 	srand((unsigned int)time(NULL));
 	int datas_size = 1000000;
 	char input[200] = { 0 };
 
 	for (int i = 0; i < datas_size; i++) {
-		int temp_val = rand() % 100000;
+		int temp_val = rand() * PRIME_NUM2 + (i % 2) * PRIME_NUM2;
 		char a = 97 + rand() % 22;
 		char b = 97 + rand() % 22;
-		sprintf(input, "%s%c %s%c", datas[rand() % 197],a, datas[rand() % 197],b);
+		char c = 97 + rand() % 22;
+		char d = 97 + rand() % 22;
+		sprintf(input, "%c%s%c %c%s%c", c, datas[rand() % 197], a, d, datas[rand() % 197], b);
 		hnode* newNode = salloc();
 		strcpy(newNode->str, input);
 		newNode->val = temp_val;
 		insert_hash_table(newNode);
 	}
-	
+
+
 	cout << "Data count > " << datas_size << endl;
 	cout << "Collision > " << collision << endl;
 
 	return 0;
 }
+
