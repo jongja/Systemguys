@@ -7,12 +7,12 @@
 
 int* sort; 
 
-void msort(int l, int r, int* a) {
+void _msort(int l, int r, int* a) {
 	if (l < r) {
 		int m = (l + r) >> 1;
 		int i = l, j = m + 1, k = l, u;
-		msort(l, m, a);
-		msort(m + 1, r, a);
+		_msort(l, m, a);
+		_msort(m + 1, r, a);
 		while (i <= m && j <= r) {
 			if (a[i] <= a[j])
 				sort[k++] = a[i++];
