@@ -10,6 +10,9 @@
  *      (stl)strcmp > 0.008 sec.
  *      (my)strcmp > 0.053 sec.
  *
+ *      (stl)strlen > 0.006 sec.
+ *      (my)strlen > 0.05 sec.
+ *
  */
 
 #define _CRT_SECURE_NO_WARNINGS
