@@ -9,7 +9,7 @@
 int heap[MAX_HEAP_SIZE] = {0};
 int heap_size = 0;
 
-void heap_push(int val){
+void heap_push(int val){ // max heap push finction
 	if(heap_size == MAX_HEAP_SIZE) return;
 	int cur = ++heap_size;
 
