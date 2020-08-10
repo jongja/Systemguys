@@ -9,7 +9,7 @@ Implementation Linked List using static allocation
 ## 3. Hash Table  
 Implementation Hash and collision testing 
 Reference : [na982 HashTable 강의편](http://bitly.kr/qkS2j3) / [na982 HashTable 구현편](http://bitly.kr/CUwqu5)  
-Problem : [홍준이의 사전놀이](https://www.acmicpc.net/problem/4195)
+Problem : [홍준이의 사전놀이](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV_6pTXqsXUDFAWS)/[친구 네트워크](https://www.acmicpc.net/problem/4195)
 
 Collision Solving --> Linking
 
