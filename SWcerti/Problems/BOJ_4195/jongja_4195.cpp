@@ -1,29 +1,30 @@
-#define _CRT_SECURE_NO_WARNINGS
+/* Complete!
+ * 
+ * Memory : 12920 KB
+ * Time   : 48 ms
+ */
+
 #include <iostream>
 #include <cstdio>
 using namespace std;
 
 #define PN 23
-#define MAX_HASH_SIZE 2000000
+#define MAX_HASH_SIZE 200000
+#define MAX_UNION_SIZE 200000
 
 struct fnode
 {
 	char name[21];
 	struct fnode* next;
-	struct fnode* network;
-};
-
-struct env
-{
-	int cnt;
-	bool isNewNode;
-	fnode* p;
+	int idx;
 };
 
 struct fnode data_pool[MAX_HASH_SIZE] = { 0 };
-struct fnode *hash_table[MAX_HASH_SIZE] =  { 0 };
+struct fnode* hash_table[MAX_HASH_SIZE] = { 0 };
 int T, F;
 int data_pool_idx = 0;
+int p[MAX_UNION_SIZE] = { 0 };
+int c[MAX_UNION_SIZE] = { 0 };
 
 struct fnode* salloc() {
 	return &data_pool[data_pool_idx++];
@@ -55,58 +56,66 @@ unsigned int hasing(char* str) {
 	return key % MAX_HASH_SIZE;
 }
 
-struct env hash_insert(char* str) {
+fnode* hash_insert(char* str, int cnt) {
 	int idx = hasing(str);
 	fnode* newNode = salloc();
 	newNode->next = NULL;
-	newNode->network = NULL;
+	newNode->idx = cnt;
 	_strcpy(newNode->name, str);
-	return Insert_node(hash_table[idx], newNode);
-}
-
-struct env Insert_node(fnode* head, fnode *newNode){
-	struct env res;
-	res.isNewNode = true;
-	res.cnt = 0;
-	if (!head) {
-		head = newNode;
-		res.cnt++;
+	if (!hash_table[idx]) {
+		hash_table[idx] = newNode;
 	}
 	else {
-		fnode* walker = head;
+		fnode* walker = hash_table[idx];
 		while (walker->next) {
-			if (!_strcmp(walker->name, newNode->name)) {
-				res.isNewNode = false;
-				res.p = walker;
-			}
+			if (!_strcmp(walker->name, newNode->name)) return walker;
 			walker = walker->next;
-			res.cnt++;
 		}
 		if (!_strcmp(walker->name, newNode->name)) {
-			res.isNewNode = false;
-			res.p = walker;
+			return walker;
 		}
 		else {
 			walker->next = newNode;
-			res.p = newNode;
-			res.cnt++;
 		}
 	}
-	if (!res.isNewNode) res.cnt--;
-	return res;
+	return newNode;
+}
+
+int find(int n) {
+	if (p[n] < 0) return n;
+	else {
+		p[n] = find(p[n]);
+		return p[n];
+	}
+}
+
+int uni(int a, int b) {
+
+	int ap = find(a);
+	int bp = find(b);
+
+	if (ap != bp) {
+		p[bp] = ap;
+		c[ap] += c[bp];
+	}
+	return c[ap];
 }
 
 void init() {
-	for (int i = 0; i < MAX_HASH_SIZE; i++)
+	for (int i = 0; i < MAX_HASH_SIZE; i++) {
+		if (i < MAX_UNION_SIZE) {
+			p[i] = -1;
+			c[i] = 1;
+		}
 		hash_table[i] = NULL;
+	}
 	data_pool_idx = 0;
 }
 
 int main(void) {
 	freopen("wow.csv", "r", stdin);
-	int T, F, r1, r2;
-	struct env res1, res2;
-
+	int T, F, cnt = 0;
+	fnode* r1, * r2;
 	char s1[21] = { 0 }, s2[21] = { 0 };
 	scanf("%d", &T);
 	for (int i = 0; i < T; i++) {
@@ -114,10 +123,10 @@ int main(void) {
 		scanf("%d", &F);
 		for (int j = 0; j < F; j++) {
 			scanf("%s %s", s1, s2);
-			res1 = hash_insert(s1);
-			res2 = hash_insert(s2);
-			Insert_node(res1.p->network, res2.p->network);
-
+			r1 = hash_insert(s1, cnt++);
+			r2 = hash_insert(s2, cnt++);
+			int res = uni(r1->idx, r2->idx);
+			printf("%d\n", res);
 		}
 	}
 	return 0;
