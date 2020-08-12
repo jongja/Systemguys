@@ -1,6 +1,8 @@
 /* UNION
  *
  * This code is union and find function
+ * array p need to initialize the value '-1'
+ * array c need to initialize the value '1'
  */
 
 #define MAX_UNION_SIZE 200000
