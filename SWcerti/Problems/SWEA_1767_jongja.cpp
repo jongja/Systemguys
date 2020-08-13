@@ -1,6 +1,8 @@
 /* [SWEA] 1767
- *
- *
+ * Complete!
+ * 
+ * Memory : 12504 KB
+ * Time   : 8 ms
  */
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -59,9 +61,13 @@ int line(int dir, int x, int y) {
 void start(int step, int connect, int sum) {
 	if (step >= core_cnt) { // return condition.
 		if (con_res <= connect) {
-			con_res = connect;
-			if (sum < res) {
+			if (con_res < connect) {
+				con_res = connect;
 				res = sum;
+			}
+			else {
+				if (res > sum)
+					res = sum;
 			}
 		}
 		return;
