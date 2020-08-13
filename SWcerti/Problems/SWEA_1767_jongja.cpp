@@ -20,6 +20,7 @@ int map[MAX_MAP_SIZE][MAX_MAP_SIZE] = { 0 };
 int dx[4] = { -1, 0, 1, 0 };
 int dy[4] = { 0, 1, 0, -1 };
 int res = 1e9;
+int con_res = 0;
 int core_cnt;
 mcore mc[13] = { 0 };
 
@@ -55,41 +56,44 @@ int line(int dir, int x, int y) {
 	else return y;
 }
 
-void start(int step, int cur, int sum) {
+void start(int step, int connect, int sum) {
 	if (step >= core_cnt) { // return condition.
-		if (sum < res) {
-			res = sum;
+		if (con_res <= connect) {
+			con_res = connect;
+			if (sum < res) {
+				res = sum;
+			}
 		}
 		return;
 	}
-	 
-	int movx = mc[cur].x, movy = mc[cur].y;
+
+	int movx = mc[step].x, movy = mc[step].y;
 	bool skip = false;
 	bool result;
 
 	for (int i = 0; i < 4; i++) { // check already connected..?
-		movx = mc[cur].x + dx[i];
-		movy = mc[cur].y + dy[i];
+		movx = mc[step].x + dx[i];
+		movy = mc[step].y + dy[i];
 		if (movx < 0 || movx >= N || movy < 0 || movy >= N) {
 			skip = true;
 			break;
 		}
 	}
 
-	movx = mc[cur].x, movy = mc[cur].y;
+	movx = mc[step].x, movy = mc[step].y;
 	if (!skip) {
 		bool go = false;
 		for (int j = 0; j < 4; j++) {
 			if (fill_line(movx, movy, j)) {
-				start(step + 1, cur + 1, sum + line(j, movx, movy));
+				start(step + 1, connect + 1, sum + line(j, movx, movy));
 				restore_line(movx, movy, j);
 				go = true;
 			}
 		}
-		if (!go) start(step + 1, cur + 1, sum);
+		if (!go) start(step + 1, connect, sum);
 	}
 	else {
-		start(step + 1, cur + 1, sum);
+		start(step + 1, connect + 1, sum);
 	}
 	return;
 }
@@ -99,6 +103,7 @@ int main(void) {
 	scanf("%d", &T);
 	for (int tc = 1; tc <= T; tc++) {
 		core_cnt = 0;
+		con_res = 0;
 		res = 1e9;
 		scanf("%d", &N);
 		for (int i = 0; i < N; i++) {
